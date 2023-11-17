@@ -1,9 +1,42 @@
-import { View, Text, StyleSheet, Image } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
+import { Link } from "expo-router";
+
+const SearchBar = () => {
+  return (
+    <View style={styles.searchContainer}>
+      <View style={styles.searchSection}>
+        <View style={styles.searchField}>
+          <Ionicons
+            style={styles.searchIcon}
+            name="ios-search"
+            size={20}
+            color={Colors.medium}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Restaurants, groceries, dishes"
+          />
+        </View>
+        <Link href={"/"} asChild>
+          <TouchableOpacity style={styles.optionButton}>
+            <Ionicons name="options-outline" size={20} color={Colors.primary} />
+          </TouchableOpacity>
+        </Link>
+      </View>
+    </View>
+  );
+};
 
 const CustomHeader = () => {
   return (
@@ -17,7 +50,7 @@ const CustomHeader = () => {
             />
           </TouchableOpacity>
           <TouchableOpacity style={styles.titleContainer}>
-            <Text style={styles.title}>Delivery . Now</Text>
+            <Text style={styles.title}>Delivery . Nosw</Text>
             <View
               style={{
                 flexDirection: "row",
@@ -44,6 +77,7 @@ const CustomHeader = () => {
           </TouchableOpacity>
         </View>
       </View>
+      <SearchBar />
     </SafeAreaView>
   );
 };
@@ -86,6 +120,35 @@ const styles = StyleSheet.create({
   subTitle: {
     fontSize: 18,
     fontWeight: "bold",
+  },
+  searchContainer: {
+    height: 60,
+    backgroundColor: "white",
+  },
+  searchSection: {
+    flexDirection: "row",
+    gap: 10,
+    flex: 1,
+    paddingHorizontal: 20,
+    alignItems: "center",
+  },
+  searchField: {
+    flex: 1,
+    backgroundColor: Colors.lightGrey,
+    borderRadius: 8,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  optionButton: {
+    padding: 10,
+    borderRadius: 50,
+  },
+  input: {
+    padding: 10,
+    color: Colors.medium,
+  },
+  searchIcon: {
+    paddingLeft: 10,
   },
 });
 
