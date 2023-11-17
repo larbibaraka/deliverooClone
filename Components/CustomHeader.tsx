@@ -9,29 +9,40 @@ const CustomHeader = () => {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <TouchableOpacity>
-          <Image
-            style={styles.bike}
-            source={require("@/assets/images/bike.png")}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.titleContainer}>
-          <Text style={styles.title}>Delivery . Now</Text>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={styles.subTitle}>Bouinan, Blida</Text>
-            <Ionicons name={"chevron-down"} size={20} color={Colors.primary} />
-          </View>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.profileContainer}>
-          <Ionicons name={"person-outline"} size={20} color={Colors.primary} />
-        </TouchableOpacity>
+        <View style={styles.leftSideHeader}>
+          <TouchableOpacity>
+            <Image
+              style={styles.bike}
+              source={require("@/assets/images/bike.png")}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.titleContainer}>
+            <Text style={styles.title}>Delivery . Now</Text>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Text style={styles.subTitle}>Bouinan, Blida</Text>
+              <Ionicons
+                name={"chevron-down"}
+                size={20}
+                color={Colors.primary}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+        <View>
+          <TouchableOpacity style={styles.profileContainer}>
+            <Ionicons
+              name={"person-outline"}
+              size={20}
+              color={Colors.primary}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </SafeAreaView>
   );
@@ -40,6 +51,11 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     backgroundColor: "#fff",
+  },
+  leftSideHeader: {
+    flexDirection: "row",
+    gap: 20,
+    alignItems: "center",
   },
   container: {
     paddingHorizontal: 20,
@@ -65,6 +81,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.lightGrey,
     padding: 10,
     borderRadius: 50,
+    color: "red",
   },
   subTitle: {
     fontSize: 18,
