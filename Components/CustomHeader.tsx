@@ -5,12 +5,15 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
+  Button,
 } from "react-native";
-import React from "react";
+import React, { useMemo, useRef } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import Colors from "@/constants/Colors";
 import { Link } from "expo-router";
+import { BottomSheetModal } from "@gorhom/bottom-sheet";
+import MyBottomSheet from "./MyBottomSheet";
 
 const SearchBar = () => {
   return (
@@ -39,17 +42,23 @@ const SearchBar = () => {
 };
 
 const CustomHeader = () => {
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+  const snapPoints = useMemo(() => ["25%", "50%"], []);
+
+  const opemModal = () => {
+    bottomSheetModalRef.current?.present();
+  };
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
         <View style={styles.leftSideHeader}>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={opemModal}>
             <Image
               style={styles.bike}
               source={require("@/assets/images/bike.png")}
             />
           </TouchableOpacity>
-          <TouchableOpacity style={styles.titleContainer}>
+          <TouchableOpacity style={styles.titleContainer} onPress={opemModal}>
             <Text style={styles.title}>Delivery . Nosw</Text>
             <View
               style={{
@@ -78,6 +87,18 @@ const CustomHeader = () => {
         </View>
       </View>
       <SearchBar />
+      <MyBottomSheet ref={bottomSheetModalRef} />
+      {/* <View style={styles.bottomSheetContainer}>
+        <BottomSheetModal
+          ref={bottomSheetModalRef}
+          index={1}
+          snapPoints={snapPoints}
+        >
+          <View style={styles.contentContainer}>
+            <Text>Awesome 🎉</Text>
+          </View>
+        </BottomSheetModal>
+      </View> */}
     </SafeAreaView>
   );
 };
@@ -149,6 +170,16 @@ const styles = StyleSheet.create({
   },
   searchIcon: {
     paddingLeft: 10,
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+  bottomSheetContainer: {
+    flex: 1,
+    padding: 24,
+    justifyContent: "center",
+    backgroundColor: "grey",
   },
 });
 
